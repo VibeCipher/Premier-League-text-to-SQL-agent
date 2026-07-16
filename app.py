@@ -251,12 +251,14 @@ SQL:"""
 def explain_result(question: str, sql: str, df: pd.DataFrame) -> str:
     preview = df.head(15).to_string(index=False)
     prompt = f"""Question: {question}
+SQL used (check its WHERE/filter conditions): {sql}
 Query result table:
 {preview}
 
 Write a short direct answer (1-3 sentences) using the EXACT values from the table above.
 Every name mentioned must be paired with its exact number from the table. Never write "unknown" — the numbers are in the table above, read them.
-Don't mention SQL."""
+If the SQL filters by position, team, or any other condition, mention that scope explicitly in the answer (e.g. "among forwards", "for Arsenal", "with over 500 minutes played") so the answer is self-explanatory and can't be confused with a differently-scoped question.
+Don't mention SQL syntax itself."""
     response = invoke_with_retry(prompt)
     return response.content.strip()
 
