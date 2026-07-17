@@ -43,7 +43,7 @@ whatever gets better predictions. The prompt logic lives in `app.py` (`generate_
 
 ## Development notebook
 
-See notebooks/ for the Colab notebook walking through how the agent was built and tested,
+See `notebooks/` for the Colab notebook walking through how the agent was built and tested,
 step by step.
 
 ## Run locally
