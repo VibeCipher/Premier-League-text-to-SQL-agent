@@ -268,6 +268,16 @@ def sql_has_unsafe_grouping(sql: str) -> bool:
     return bool(re.search(r"group\s+by\s+.*\b(first_name|second_name)\b", sql, re.IGNORECASE)) and "players" in sql.lower()
 
 
+def run_sql(query: str) -> pd.DataFrame:
+    """Run a raw SQL query directly against the DB."""
+    conn = sqlite3.connect("fpl.db")
+    try:
+        df = pd.read_sql_query(query, conn)
+    finally:
+        conn.close()
+    return df
+
+
 def ask_pipeline(question: str):
     """Returns (answer_text, sql_used, result_df) — retries once on SQL error or unsafe grouping."""
     sql = generate_sql(question)
@@ -298,17 +308,6 @@ Write a corrected SQLite query. Return ONLY the SQL, no explanation."""
 
     answer = explain_result(question, sql, df)
     return answer, sql, df
-
-# ---------------------------------------------------------------
-# HELPER: run a raw SQL query directly
-# ---------------------------------------------------------------
-def run_sql(query: str) -> pd.DataFrame:
-    conn = sqlite3.connect("fpl.db")
-    try:
-        df = pd.read_sql_query(query, conn)
-    finally:
-        conn.close()
-    return df
 
 # ---------------------------------------------------------------
 # CHAT STATE
