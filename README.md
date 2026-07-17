@@ -41,6 +41,11 @@ This is an open project — swap in a different model, tune the prompts, add a n
 whatever gets better predictions. The prompt logic lives in `app.py` (`generate_sql`,
 `explain_result`) if you want to tweak how it reasons.
 
+## Development notebook
+
+See notebooks/ for the Colab notebook walking through how the agent was built and tested,
+step by step.
+
 ## Run locally
 
 ```bash
