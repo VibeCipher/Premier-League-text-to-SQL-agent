@@ -3,7 +3,7 @@
 A natural-language-to-SQL agent for exploring real 2024-25 EPL data. Ask a question in
 plain English, and the agent writes SQL, runs it, and answers — no query-writing required.
 
-**Live demo:** [_(add your Streamlit Cloud link here after deploying)](https://pleague-sql-agent.streamlit.app/)_
+**Live demo:** [_(Link)](https://pleague-sql-agent.streamlit.app/)_
 
 ## What it does
 
